@@ -1,8 +1,8 @@
-#! /bin/bash
+#!/bin/bash
 
 if [ "$1" = "" ]
 then
-    echo runc: error: no arguments provided
+    echo dbgc: error: no arguments provided
     exit 1
 fi
 
