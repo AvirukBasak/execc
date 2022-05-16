@@ -8,4 +8,4 @@ $ dbgc "path/to/file.c"
 ```
 
 # Note
-Debug binaries will have `DEBUG` macro set to (`1`).
+Execution w/ `dbgc` will create and set `DEBUG` macro to (`1`).
