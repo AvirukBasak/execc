@@ -18,4 +18,6 @@ then
 fi
 
 ./$base
+retval=$?
 rm ./$base
+exit $retval
