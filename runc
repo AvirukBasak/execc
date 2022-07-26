@@ -17,7 +17,7 @@ then
     exit "$?"
 fi
 
-./$base
+./$base "${@:2}"
 retval=$?
 rm ./$base
 exit $retval
