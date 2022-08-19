@@ -7,7 +7,7 @@ then
     exit 1
 fi
 
-if [[ "$file" == *.c ]]
+if ! [[ "$1" == *".c" ]]
 then
     echo dbgcpp: error: file should have '.c' extension
     exit 2
@@ -15,11 +15,9 @@ fi
 
 base=$(basename -s .c $1)
 
-echo debug: $1
-
 gcc -Wall -lm -g -ggdb -D DEBUG="(1)" -o ./$base $1
 
-if ! [ "$?" = "0" ]
+if ! [ "$?" -eq "0" ]
 then
     exit "$?"
 fi
@@ -28,6 +26,7 @@ mkdir -p ~/.tmp/dbgc/
 mv ./$base ~/.tmp/dbgc/$base
 chmod +x ~/.tmp/dbgc/$base
 
+echo debug: $1
 gdb ~/.tmp/dbgc/$base
 
 rm ~/.tmp/dbgc/$base
