@@ -3,6 +3,7 @@
 if [ "$1" = "" ]
 then
     echo runc: error: no arguments provided
+    echo usage: runc file.c [argv]
     exit 1
 fi
 
@@ -17,7 +18,12 @@ then
     exit "$?"
 fi
 
-./$base "${@:2}"
+mkdir -p ~/.tmp/runc/
+mv ./$base ~/.tmp/runc/$base
+chmod +x ~/.tmp/runc/$base
+
+~/.tmp/runc/$base "${@:2}"
 retval=$?
-rm ./$base
+
+rm ~/.tmp/runc/$base
 exit $retval

@@ -3,6 +3,7 @@
 if [ "$1" = "" ]
 then
     echo dbgc: error: no arguments provided
+    echo usage: dbgc file.c [argv]
     exit 1
 fi
 
@@ -10,12 +11,17 @@ base=$(basename -s .c $1)
 
 echo debug: $1
 
-gcc -Wall -g -ggdb -D DEBUG="(1)" -o ./$base $1
+gcc -Wall -lm -g -ggdb -D DEBUG="(1)" -o ./$base $1
 
 if ! [ "$?" = "0" ]
 then
     exit "$?"
 fi
 
-gdb -q ./$base
-rm ./$base
+mkdir -p ~/.tmp/dbgc/
+mv ./$base ~/.tmp/dbgc/$base
+chmod +x ~/.tmp/dbgc/$base
+
+gdb ~/.tmp/dbgc/$base
+
+rm ~/.tmp/dbgc/$base
