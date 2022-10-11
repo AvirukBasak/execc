@@ -27,6 +27,6 @@ mv ./$base ~/.tmp/dbgc/$base
 chmod +x ~/.tmp/dbgc/$base
 
 echo debug: $1
-gdb ~/.tmp/dbgc/$base
+gdb -q ~/.tmp/dbgc/$base
 
 rm ~/.tmp/dbgc/$base
